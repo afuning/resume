@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const { WebPlugin } = require('web-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -12,7 +12,7 @@ module.exports = {
   },
   resolve: {
     // 加快搜索速度
-    modules: [path.resolve(__dirname, 'node_modules')],
+    modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
     // es tree-shaking
     mainFields: ['jsnext:main', 'browser', 'main'],
   },
@@ -52,4 +52,4 @@ module.exports = {
     })
   ],
   devtool: 'source-map',
-};
+}

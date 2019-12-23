@@ -1,37 +1,37 @@
-const fs = require('fs');
-const path = require('path');
-const { spawnSync } = require('child_process');
-const findChrome = require('chrome-finder');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
+const fs = require('fs')
+const path = require('path')
+const { spawnSync } = require('child_process')
+const findChrome = require('chrome-finder')
+const DefinePlugin = require('webpack/lib/DefinePlugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const EndWebpackPlugin = require('end-webpack-plugin');
+const EndWebpackPlugin = require('end-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ghpages = require('gh-pages');
+const ghpages = require('gh-pages')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 function publishGhPages() {
   return new Promise((resolve, reject) => {
     ghpages.publish(outputPath, { dotfiles: true }, (err) => {
       if (err) {
-        reject(err);
+        reject(err)
       } else {
-        resolve();
+        resolve()
       }
     })
-  });
+  })
 }
 
-const outputPath = path.resolve(__dirname, './public');
+const outputPath = path.resolve(__dirname, './public')
 module.exports = {
+  mode: 'production',
   output: {
     path: outputPath,
-    publicPath: '',
     filename: '[name]_[chunkhash:8].js',
   },
   resolve: {
     // 加快搜索速度
-    modules: [path.resolve(__dirname, 'node_modules')],
+    modules: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')],
     // es tree-shaking
     mainFields: ['jsnext:main', 'browser', 'main'],
   },
@@ -118,4 +118,4 @@ module.exports = {
       // await publishGhPages();
     }),
   ]
-};
+}
