@@ -23,6 +23,7 @@ function publishGhPages() {
 }
 
 const outputPath = path.resolve(__dirname, './public')
+const outputStaticPath = path.resolve(__dirname, './public/static')
 module.exports = {
   mode: 'production',
   output: {
@@ -110,7 +111,7 @@ module.exports = {
 
       // 调用 Chrome 渲染出 PDF 文件
       const chromePath = findChrome();
-      spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, './static/resume.pdf')}`,
+      spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, 'resume.pdf')}`,
         '' // 这里注意改成你的在线简历的网站
       ]);
 
