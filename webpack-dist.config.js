@@ -110,13 +110,14 @@ module.exports = {
       // await publishGhPages();
 
       // 调用 Chrome 渲染出 PDF 文件
-      try {
-        const chromePath = findChrome();
-        spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, 'resume.pdf')}`,
-          'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
-        ]);
-      } catch (e) {
-        console.log(e)
+      const chromePath = findChrome()
+      const spawn = spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, 'resume.pdf')}`,
+        'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
+      ])
+      console.log(spawn)
+      if (spawn.stderr) {
+        console.log(Error(spawn.stderr))
+        process.exit(1)
       }
 
       // 重新发布到 ghpages
