@@ -3,6 +3,7 @@ services:
     resume:
         container_name: resume
         image: afuning/basic:latest
+        privileged: true
         ports:
             - "8080:80"
         restart: on-failure
