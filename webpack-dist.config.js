@@ -115,10 +115,10 @@ module.exports = {
         'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
       ])
       console.log(spawn)
-      if (spawn.stderr) {
-        console.log(Error(spawn.stderr))
-        process.exit(1)
-      }
+      // if (spawn.stderr) {
+      //   console.log(new Error(spawn.stderr))
+      //   process.exit(1)
+      // }
 
       // 重新发布到 ghpages
       // await publishGhPages();
