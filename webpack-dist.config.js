@@ -114,6 +114,11 @@ module.exports = {
       const spawn = spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, 'resume.pdf')}`,
         'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
       ])
+      let sourceFile = path.join(__dirname, 'img.jpeg')
+      let destPath = path.join(__dirname, "/public/", 'img.jpeg')
+      let readStream = fs.createReadStream(sourceFile)
+      let writeStream = fs.createWriteStream(destPath)
+      readStream.pipe(writeStream)
       // console.log(spawn)
       // if (spawn.stderr) {
       //   console.log(new Error(spawn.stderr))
