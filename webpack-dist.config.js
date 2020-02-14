@@ -9,6 +9,7 @@ const EndWebpackPlugin = require('end-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ghpages = require('gh-pages')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 function publishGhPages() {
   return new Promise((resolve, reject) => {
@@ -103,6 +104,12 @@ module.exports = {
       filename: '[name]_[contenthash:8].css',
       ignoreOrder: true
     }),
+    new CopyPlugin([
+      {
+        from: path.resolve(__dirname, './static'),
+        to: path.resolve(__dirname, './public/static')
+      }
+    ]),
     new EndWebpackPlugin(async () => {
       // 自定义域名
       // fs.writeFileSync(path.resolve(outputPath, 'CNAME'), 'resume.wuhaolin.cn');
@@ -114,19 +121,6 @@ module.exports = {
       const spawn = spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, 'resume.pdf')}`,
         'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
       ])
-      let sourceFile = path.join(__dirname, 'img.jpeg')
-      let destPath = path.join(__dirname, "/public/", 'img.jpeg')
-      let readStream = fs.createReadStream(sourceFile)
-      let writeStream = fs.createWriteStream(destPath)
-      readStream.pipe(writeStream)
-      // console.log(spawn)
-      // if (spawn.stderr) {
-      //   console.log(new Error(spawn.stderr))
-      //   process.exit(1)
-      // }
-
-      // 重新发布到 ghpages
-      // await publishGhPages();
     }),
   ]
 }
