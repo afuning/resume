@@ -11,18 +11,6 @@ const ghpages = require('gh-pages')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
-function publishGhPages() {
-  return new Promise((resolve, reject) => {
-    ghpages.publish(outputPath, { dotfiles: true }, (err) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
-  })
-}
-
 const outputPath = path.resolve(__dirname, './public')
 const outputStaticPath = path.resolve(__dirname, './public/static')
 module.exports = {
@@ -111,14 +99,9 @@ module.exports = {
       }
     ]),
     new EndWebpackPlugin(async () => {
-      // 自定义域名
-      // fs.writeFileSync(path.resolve(outputPath, 'CNAME'), 'resume.wuhaolin.cn');
-
-      // await publishGhPages();
-
       // 调用 Chrome 渲染出 PDF 文件
       const chromePath = findChrome()
-      const spawn = spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputPath, 'resume.pdf')}`,
+      const spawn = spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputStaticPath, 'resume.pdf')}`,
         'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
       ])
     }),

@@ -52,15 +52,17 @@ a {
   position: absolute;
   top: 30px;
   left: 50%;
-  color: #bbb;
   margin-left: -500px;
-  font-size: 12px;
   text-align: right;
   @media screen and (max-width: 1024px) {
     display: none;
   }
   @media print {
     display: none;
+  }
+  &__a {
+    color: #bbb;
+    font-size: 12px;
   }
 }
 
