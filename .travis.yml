@@ -7,8 +7,11 @@ services:
 before_install:
   - sudo mkdir -p /usr/share/fonts/opentype/
   - sudo mkdir -p /usr/share/fonts/truetype/
-  - sudo mv ./fonts/Adobe-FangSong-Std-R-2 /usr/share/fonts/opentype/
-  - sudo mv ./fonts/WeiRuanYaHei-1 /usr/share/fonts/truetype/
+  - sudo mv ./fonts/Adobe-FangSong-Std-R-2.otf /usr/share/fonts/opentype/
+  - sudo mv ./fonts/WeiRuanYaHei-1.ttf /usr/share/fonts/truetype/
+  - sudo mkfontscale
+  - sudo mkfontdir
+  - sudo fc-cache -fv
   - fc-list :lang=zh
   - npm install
 
