@@ -5,6 +5,8 @@ services:
   - docker
 
 before_install:
+  - sudo apt-get install ttf-mscorefonts-installer
+  - sudo apt-get install fontconfig
   - sudo mkdir -p /usr/share/fonts/opentype/
   - sudo mkdir -p /usr/share/fonts/truetype/
   - sudo mv ./fonts/Adobe-FangSong-Std-R-2.otf /usr/share/fonts/opentype/
