@@ -7,7 +7,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const EndWebpackPlugin = require('end-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ghpages = require('gh-pages')
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
