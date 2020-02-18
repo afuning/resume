@@ -5,6 +5,8 @@ services:
   - docker
 
 before_install:
+  - sudo apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
+  - sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
   - npm install
 
 script:
