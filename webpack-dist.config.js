@@ -101,7 +101,7 @@ module.exports = {
       // 调用 Chrome 渲染出 PDF 文件
       const chromePath = findChrome()
       const spawn = spawnSync(chromePath, ['--headless', '--disable-gpu', `--print-to-pdf=${path.resolve(outputStaticPath, 'resume.pdf')}`,
-        'http://49.235.122.8:8080/' // 这里注意改成你的在线简历的网站
+        'http://resume.afncn.com/' // 这里注意改成你的在线简历的网站
       ])
       fs.chmodSync(path.resolve(outputStaticPath, 'resume.pdf'), 0644)
     }),
