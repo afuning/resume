@@ -22,3 +22,10 @@ script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t afuning/basic:latest .
   - docker push afuning/basic:latest
+
+notifications:
+  email:
+    recipients:
+      - afncn@icloud.com
+    on_success: always # default: change
+    on_failure: always # default: always
